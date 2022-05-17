@@ -48,12 +48,13 @@ input:focus{
 }
 
 .welcome-section{
-  display: none;
+  /* display: none; */
 }
 
 .big-title{
   margin-bottom: 20px;
   font-weight: 500;
+  font-weight: bold;
 }
 
 .description{
@@ -89,4 +90,10 @@ input:focus{
   margin: 30px auto 0 auto;
   color: #fff;
   background-color: #348B3E;
+}
+
+@media only screen and (max-width : 500px){
+  .container div{
+    width: 95%;
+  }
 }
