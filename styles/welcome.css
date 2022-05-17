@@ -8,6 +8,14 @@
 
 button{
   all: unset;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+button:hover{
+  cursor: pointer;
 }
 
 input:focus{
@@ -23,7 +31,8 @@ input:focus{
   background: linear-gradient(to right, #89E5C1, #97DFE2);
 }
 
-.welcome-section{
+.welcome-section,
+.question-section{
   width: 500px;
   padding: 4% 3%;
   display: flex;
@@ -31,6 +40,10 @@ input:focus{
   justify-content: center;
   flex-direction: column;
   background: #fff;
+}
+
+.welcome-section{
+  display: none;
 }
 
 .big-title{
@@ -46,10 +59,9 @@ input:focus{
 }
 
 .form{
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .form-group{
@@ -72,9 +84,4 @@ input:focus{
   margin: 30px auto 0 auto;
   color: #fff;
   background-color: #348B3E;
-  font-size: 18px;
-}
-
-.btn-green:hover{
-  cursor: pointer;
 }

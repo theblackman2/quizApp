@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QuizApp</title>
   <!-- my stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles/welcome.css">
+  <link rel="stylesheet" href="styles/question.css">
   <!-- inter google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,6 +30,41 @@
           </div>
           <button type="submit" class="btn-green">Commencer</button>
         </form>
+    </div>
+
+    <div class="question-section">
+      <p class="question">Quel est le type d'un fichier Javascript?</p>
+      <div class="time">
+        <div class="time-up">
+          <span>Question 1/15</span>
+          <span>30</span>
+        </div>
+        <div class="time-under">
+          <span class="time-spend" id="time-spend"></span>
+        </div>
+      </div>
+      <form action="#" class="form user-enswers" method="post">
+        <div class="form-answer">
+          <input type="radio" name="answer" id="first-answer">  
+          <label for="first-answer">.ts</label>
+        </div>
+        <div class="form-answer">
+          <input type="radio" name="answer" id="second-answer">  
+          <label for="second-answer">.jsx</label>
+        </div>
+        <div class="form-answer">
+          <input type="radio" name="answer" id="third-answer">  
+          <label for="third-answer">.js</label>
+        </div>
+        <div class="form-answer">
+          <input type="radio" name="answer" id="fourth-answer">  
+          <label for="fourth-answer">.j</label>
+        </div>
+        <div class="submit-answers">
+          <button type="reset" id="quit" class="btn-orange">Quitter</button>
+          <button class="btn-submit" type="submit" id="next">Suivant</button>
+        </div>
+      </form>
     </div>
   </div>
 
