@@ -6,6 +6,10 @@
   color: #555555;
 }
 
+a{
+  text-decoration: none;
+}
+
 button{
   all: unset;
   color: #fff;
@@ -32,7 +36,8 @@ input:focus{
 }
 
 .welcome-section,
-.question-section{
+.question-section,
+.finished-section{
   width: 500px;
   padding: 4% 3%;
   display: flex;

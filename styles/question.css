@@ -1,3 +1,7 @@
+.question-section{
+  display: none;
+}
+
 .question{
   margin-bottom: 20px;
 }
@@ -42,7 +46,9 @@
   padding: 0 15px;
 }
 
-.form-answer:hover{
+.form-answer:hover,
+.form-answer input:hover,
+.form-answer label:hover{
   cursor: pointer;
 }
 

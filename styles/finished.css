@@ -1,0 +1,35 @@
+.finished-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  display: none;
+}
+
+.user-email{
+  margin: 30px 0;
+}
+
+.success,
+.wrong{
+  font-size: 90px;
+}
+
+.success{
+  color: #028A3D;
+}
+
+.wrong{
+  color: #FF3838;
+}
+
+.score{
+  margin: 40px 0;
+}
+
+.home{
+  padding: 10px 50px;
+  background: #0880D6;
+  color: #fff;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
