@@ -13,6 +13,28 @@ function getUserInfos(formInfos){
   return unserInfos
 }
 
+function validateForm(){
+  let elements = userInfosForm.elements
+  if(!elements.name.value){
+    elements.name.nextElementSibling.style.display = "block"
+    validate = false
+  }else{
+    elements.name.nextElementSibling.style.display = "none"
+    validate = true
+  }
+  if(validate){
+    if(!elements.email.value){
+      elements.email.nextElementSibling.style.display = "block"
+      validate = false
+    }else{
+      elements.email.nextElementSibling.style.display = "none"
+      validate = true
+    }
+  }
+
+  return validate
+}
+
 function showScore(user){
   const name = document.querySelector(".big-name")
   name.textContent = user[0]
@@ -32,12 +54,14 @@ userInfosForm.elements.email.addEventListener("change", function(e){
 })
 
 userInfosForm.addEventListener("submit", function(e){
-  const user = getUserInfos(this)
-  this.reset()
-  welcomeArea.classList.add("hide")
-  // questionArea.classList.remove("hide")
-  finishedArea.classList.remove("hide")
-  showScore(user)
+  if(validateForm()){
+    const user = getUserInfos(this)
+    this.reset()
+    welcomeArea.classList.add("hide")
+    // questionArea.classList.remove("hide")
+    finishedArea.classList.remove("hide")
+    showScore(user)
+  }
 
 
   e.preventDefault()
