@@ -80,3 +80,7 @@
 .btn-submit{
   background: rgba(2, 138, 61, 0.42);
 }
+
+.btn-submit-active{
+  background: rgba(2, 138, 61, 1);
+}
