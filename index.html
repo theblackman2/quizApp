@@ -31,12 +31,12 @@
         <div class="form-group">
           <label for="name">Nom</label>
           <input value="Joseph" type="text" name="name" id="name">
-          <p class="error">Veillez entrer votre nom</p>
+          <p class="error">N’oubliez pas de renseigner votre nom avant de commencer le Quiz.</p>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input value="joseph@kinshasadigital.com" type="email" name="email" id="email">
-          <p class="error">Entrer une adresse email valide</p>
+          <p class="error">N’oubliez pas de renseigner votre email avant de commencer le Quiz</p>
         </div>
         <button type="submit" class="btn-green">Commencer</button>
       </form>
@@ -47,8 +47,8 @@
       <p class="question"></p>
       <div class="time">
         <div class="time-up">
-          <span>Question 1/15</span>
-          <span>30</span>
+          <span>Question <span class="nb"></span>/15</span>
+          <span class="show-time"></span>
         </div>
         <div class="time-under">
           <span class="time-spend" id="time-spend"></span>
@@ -71,11 +71,11 @@
           <input type="radio" name="answer" id="fourth-answer">  
           <label for="fourth-answer"></label>
         </div>
-        <div class="submit-answers">
-          <button type="reset" id="quit" class="btn-orange">Quitter</button>
-          <button class="btn-submit" type="submit" id="next">Suivant</button>
-        </div>
       </form>
+      <div class="submit-answers">
+        <a id="quit" class="btn-orange">Quitter</a>
+        <a disabled="true" class="btn-submit" id="next">Suivant</a>
+      </div>
     </div>
 
     <!-- finished section -->
@@ -83,10 +83,10 @@
       <h2 class="big-name"></h2>
       <p class="user-email"></p>
       <div class="status">
-        <i class="fa-regular fa-circle-check success"></i>
-        <!-- <i class="fa-regular fa-circle-xmark wrong"></i> -->
+        <i class="fa-regular fa-circle-check success hide"></i>
+        <i class="fa-regular fa-circle-xmark wrong hide"></i>
       </div>
-      <p class="score">14/15</p>
+      <p class="score"><span class="user-score"></span>/15</p>
       <a href="/" class="home" id="home">Acceuil</a>
     </div>
   </div>
