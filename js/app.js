@@ -318,16 +318,21 @@ userInfosForm.addEventListener("submit", function(e){
     let score = 0
     let question = askQuestion(nbrQuestons)
     let animation = TimeAnimation(timer)
-    setTimeout(() => {
+    let timeOut = setTimeout(() => {
       next.setAttribute("disabled", "false")
       next.click()
-    }, 6000);
+      next.setAttribute("disabled", "true")
+    }, 60000)
     next.addEventListener("click", function(e){
-      clearInterval(animation)
-      setTimeout(() => {
-        next.setAttribute("disabled", "false")
-        next.click()
-      }, 6000);
+      if(this.getAttribute("disabled") == "false"){
+        clearTimeout(timeOut)
+        clearInterval(animation)
+        timeOut = setTimeout(() => {
+          next.setAttribute("disabled", "false")
+          next.click()
+          next.setAttribute("disabled", "true")
+        }, 60000)
+      }
       let userChoice = document.querySelector(".form-answer input:checked")
       if(userChoice){
         let userAnswer = userChoice.nextElementSibling.textContent
@@ -343,19 +348,20 @@ userInfosForm.addEventListener("submit", function(e){
             questionArea.classList.add("hide")
             finishedArea.classList.remove("hide")
             showScore(user, score)
-            clearTimeout(animation)
           }
         }
         this.setAttribute("disabled", true)
       }else{
-        if(nbrQuestons < 15){
-          nbrQuestons += 1
-          question = askQuestion(nbrQuestons)
-          animation = TimeAnimation(timer)
-        }else{
-          questionArea.classList.add("hide")
-          finishedArea.classList.remove("hide")
-          showScore(user, score)
+        if(this.getAttribute("disabled") == "false"){
+          if(nbrQuestons < 15){
+            nbrQuestons += 1
+            question = askQuestion(nbrQuestons)
+            animation = TimeAnimation(timer)
+          }else{
+            questionArea.classList.add("hide")
+            finishedArea.classList.remove("hide")
+            showScore(user, score)
+          }
         }
       }
     })
