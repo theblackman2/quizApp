@@ -120,9 +120,9 @@ const questions = {
     question: "Comment écrire quelque chose dans une page Web en Javascript?",
     answers : {
       1 : "window.write(...)",
-      2 : "document.write ",
-      3 : "window.page.write",
-      4 : "document.page.write"
+      2 : "document.write(...) ",
+      3 : "window.page.write(...)",
+      4 : "document.page.write(...)"
     }
   },
   15 : {
@@ -141,6 +141,8 @@ const welcomeArea = document.querySelector(".welcome-section")
 const questionArea = document.querySelector(".question-section")
 const finishedArea = document.querySelector(".finished-section")
 const questionsForm = document.querySelector(".user-answers")
+const formAnswers = document.querySelector(".user-answers")
+const allAnswers = document.querySelectorAll(".form-answer")
 const timer = document.querySelector("#time-spend")
 const next = document.querySelector("#next")
 const quit = document.querySelector("#quit")
@@ -221,12 +223,12 @@ function getQuestion(questions){
 
 /**
  * 
+ * @param {DOMElement} formAnswers The form where wille be displayed answers
  * @param {Object} question The question to display
  * @param {number} n The number of the question
  */
-function showQuestion(question, n){
+function showQuestion(formAnswers, question, n){
   const questionParagraph = document.querySelector(".question")
-  const formAnswers = document.querySelector(".user-answers")
   const nb = document.querySelector(".nb")
 
   nb.textContent = n
@@ -242,7 +244,7 @@ function showQuestion(question, n){
  */
 function askQuestion(n){
   let question = getQuestion(questions)
-  showQuestion(question, n)
+  showQuestion(formAnswers, question, n)
   return question
 }
 
@@ -262,7 +264,7 @@ function TimeAnimation(timer){
     percent = (t*100) / 60
     t--
     showTime.textContent = t
-    if(t < 30) timer.style.background = "#cf7c1d"
+    if(t < 30) timer.style.background = "#EC880C"
     if(t < 15) timer.style.background = "red"
     if(t == 0){
       clearInterval(animation)
@@ -307,15 +309,14 @@ userInfosForm.elements.email.addEventListener("change", function(e){
 
 for(let answer of questionsForm.elements.answer){
   answer.addEventListener("change", function(e){
-  let nextBtn = document.querySelector("#next")
-  nextBtn.setAttribute("disabled", false)
-  next.style.background = "rgba(2, 138, 61, 1)"
+    let nextBtn = document.querySelector("#next")
+    nextBtn.setAttribute("disabled", false)
+    next.style.background = "rgba(2, 138, 61, 1)"
 })
 }
 
 userInfosForm.addEventListener("submit", function(e){
   let valid = validateForm(this)
-  console.log(valid)
   if(valid){
     const user = getUserInfos(this)
     this.reset()
@@ -379,3 +380,7 @@ userInfosForm.addEventListener("submit", function(e){
   }
   e.preventDefault()
 })
+
+// Array.from(allAnswers).forEach(el => {
+//   console.log(el.children["answer"].checked)
+// })

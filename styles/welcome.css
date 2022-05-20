@@ -39,6 +39,8 @@ input:focus{
 .question-section,
 .finished-section{
   width: 500px;
+  height: 90%;
+  max-height: 90%;
   padding: 4% 3%;
   display: flex;
   align-items: center;
@@ -49,7 +51,6 @@ input:focus{
 
 .big-title{
   margin-bottom: 20px;
-  font-weight: 500;
   font-weight: bold;
 }
 
@@ -78,7 +79,7 @@ input:focus{
 }
 
 .form-group input{
-  padding: 10px 18px;
+  padding: 10px 20px 10px 10px;
 }
 
 .btn-green{
@@ -97,5 +98,19 @@ input:focus{
 @media only screen and (max-width : 500px){
   .container div{
     width: 95%;
+    max-height: 95%;
+  }
+
+  .big-title{
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .description{
+    margin-bottom: 10px;
+  }
+
+  .btn-green{
+    margin-top: 15px;
   }
 }
