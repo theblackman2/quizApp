@@ -143,6 +143,7 @@ const finishedArea = document.querySelector(".finished-section")
 const questionsForm = document.querySelector(".user-answers")
 const timer = document.querySelector("#time-spend")
 const next = document.querySelector("#next")
+const quit = document.querySelector("#quit")
 validate = true
 
 /**
@@ -151,7 +152,6 @@ validate = true
  * @returns The user infos from the form
  */
 function getUserInfos(formInfos){
-
   const userName = formInfos.elements.name.value
   const userEmail = formInfos.elements.email.value
   const unserInfos = [userName, userEmail]
@@ -159,25 +159,25 @@ function getUserInfos(formInfos){
   return unserInfos
 }
 
-function validateForm(){
-  let elements = userInfosForm.elements
-  if(!elements.name.value){
-    elements.name.nextElementSibling.style.display = "block"
-    validate = false
-  }else{
-    elements.name.nextElementSibling.style.display = "none"
-    validate = true
-  }
-  if(validate){
-    if(!elements.email.value){
-      elements.email.nextElementSibling.style.display = "block"
+/**
+ * 
+ * @param {DOMElement} form The form to validate
+ * @returns True if validate and false if not
+ */
+function validateForm(form){
+  let validate = true
+  Array.from(form.elements).forEach(element => {
+    if(!element.value){
+      element.nextElementSibling.style.display = "block"
+      element.style.border = "1px solid #f00"
       validate = false
     }else{
-      elements.email.nextElementSibling.style.display = "none"
-      validate = true
+      if(element.type != "submit"){
+        element.style.border = "1px solid #555555"
+        element.nextElementSibling.style.display = "none"
+      }
     }
-  }
-
+  })
   return validate
 }
 
@@ -187,6 +187,8 @@ function validateForm(){
  * @param {Int} score The score of the user
  */
 function showScore(user, score){
+  questionArea.classList.add("hide")
+  finishedArea.classList.remove("hide")
   const name = document.querySelector(".big-name")
   name.textContent = user[0]
   const email = document.querySelector(".user-email")
@@ -247,6 +249,7 @@ function askQuestion(n){
 /**
  * 
  * @param {DOMElement} timer The element to animate
+ * @returns {Event} SetInterval in this case
  */
 function TimeAnimation(timer){
   const showTime = document.querySelector(".show-time")
@@ -254,14 +257,15 @@ function TimeAnimation(timer){
   showTime.textContent = t
   timer.style.width = "100%"
   let percent = 100
+  timer.style.background = "#028A3D"
   let animation = setInterval(() => {
     percent = (t*100) / 60
     t--
     showTime.textContent = t
-    if(t < 30) timer.style.background = "red"
+    if(t < 30) timer.style.background = "#cf7c1d"
+    if(t < 15) timer.style.background = "red"
     if(t == 0){
       clearInterval(animation)
-      timer.style.background = "#028A3D"
     }
     timer.style.width = percent + "%"
   }, 1000)
@@ -294,7 +298,9 @@ userInfosForm.elements.email.addEventListener("change", function(e){
 
   if(!validate){
     this.nextElementSibling.style.display = "block"
+    this.style.border = "1px solid #f00"
   }else{
+    this.style.border = "1px solid #555555"
     this.nextElementSibling.style.display = "none"
   }
 })
@@ -308,7 +314,9 @@ for(let answer of questionsForm.elements.answer){
 }
 
 userInfosForm.addEventListener("submit", function(e){
-  if(validateForm()){
+  let valid = validateForm(this)
+  console.log(valid)
+  if(valid){
     const user = getUserInfos(this)
     this.reset()
     welcomeArea.classList.add("hide")
@@ -358,15 +366,16 @@ userInfosForm.addEventListener("submit", function(e){
             question = askQuestion(nbrQuestons)
             animation = TimeAnimation(timer)
           }else{
-            questionArea.classList.add("hide")
-            finishedArea.classList.remove("hide")
             showScore(user, score)
           }
         }
       }
     })
+    quit.addEventListener("click", function(e){
+      clearInterval(animation)
+      clearTimeout(timeOut)
+      showScore(user, score)
+    })
   }
-
-
   e.preventDefault()
 })
