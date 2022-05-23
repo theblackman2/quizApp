@@ -1,8 +1,8 @@
 // Import all functions 
-import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail } from "./functions.js"
+import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, getQuestion} from "./functions.js"
 
 // Import all constants 
-import { userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, allAnswers, timer, next, quit } from "./constants.js";
+import { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, allAnswers, timer, next, quit } from "./constants.js";
 
 
 // able the next btn after answer choosed
@@ -15,6 +15,7 @@ for(let answer of questionsForm.elements.answer){
 }
 
 userInfosForm.addEventListener("submit", function(e){
+  let q = getQuestion(questions)
   let valid = validateForm(this)
   if(valid){
     const user = getUserInfos(this)
@@ -24,7 +25,7 @@ userInfosForm.addEventListener("submit", function(e){
 
     let nbrQuestons = 1
     let score = 0
-    let question = askQuestion(nbrQuestons, formAnswers)
+    let question = askQuestion(nbrQuestons, formAnswers, q)
     let animation = TimeAnimation(timer)
     let timeOut = setTimeout(() => {
       next.setAttribute("disabled", "false")
@@ -50,7 +51,7 @@ userInfosForm.addEventListener("submit", function(e){
         if(this.getAttribute("disabled") == "false"){
           if(nbrQuestons < 15){
             nbrQuestons += 1
-            question = askQuestion(nbrQuestons, formAnswers)
+            question = askQuestion(nbrQuestons, formAnswers, q)
             animation = TimeAnimation(timer)
           }else{
             questionArea.classList.add("hide")
@@ -63,7 +64,7 @@ userInfosForm.addEventListener("submit", function(e){
         if(this.getAttribute("disabled") == "false"){
           if(nbrQuestons < 15){
             nbrQuestons += 1
-            question = askQuestion(nbrQuestons, formAnswers)
+            question = askQuestion(nbrQuestons, formAnswers, q)
             animation = TimeAnimation(timer)
           }else{
             showScore(user, score, questionArea, finishedArea)
@@ -79,7 +80,3 @@ userInfosForm.addEventListener("submit", function(e){
   }
   e.preventDefault()
 })
-
-// Array.from(allAnswers).forEach(el => {
-//   console.log(el.children["answer"].checked)
-// })

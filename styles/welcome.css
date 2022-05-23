@@ -96,9 +96,13 @@ input:focus{
 }
 
 @media only screen and (max-width : 500px){
-  .container div{
+  .container > div{
     width: 95%;
-    max-height: 95%;
+    max-height: unset;
+    min-height: 90%;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .big-title{

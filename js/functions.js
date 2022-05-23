@@ -1,4 +1,3 @@
-import questions from './questions.js';
 
 /**
  * 
@@ -41,6 +40,15 @@ import questions from './questions.js';
   return validate
 }
 
+/**
+ * 
+ * @param {Array} arr The array to shurffle
+ * @returns The shurffled array
+ */
+function shurffle(arr){
+  return arr.sort(()=>Math.random()-0.5)
+}
+
 
 
 /**
@@ -75,12 +83,11 @@ import questions from './questions.js';
 
 /**
  * 
- * @param {Obejct} questions All the questions where we choose one question
+ * @param {Array} questions All the questions where we choose one question
  * @returns The question choosed in questions
  */
  function getQuestion(questions){
-  let randomQuestion = Math.floor(Math.random() * 15) + 1
-  return questions[randomQuestion]
+   return shurffle(questions)
 }
 
 
@@ -96,9 +103,11 @@ import questions from './questions.js';
 
   nb.textContent = n
   questionParagraph.textContent = question["question"]
-  for(let i = 0; i < 4; i++){
-    formAnswers.elements[i].nextElementSibling.textContent = question["answers"][i+1]
-  }
+  let shurffleAnswers = shurffle(question["answers"])
+
+  Array.from(formAnswers.elements).forEach((element, index) => {
+    element.nextElementSibling.textContent = shurffleAnswers[index]
+  })
 }
 
 
@@ -107,12 +116,12 @@ import questions from './questions.js';
  * 
  * @param {number} n The number of the question
  * @param {DOMElement} formAnswers The form where will be diqplayed the question
+ * @param {Array} question The sorted array of questions
  * @returns The question asked
  */
- function askQuestion(n, formAnswers){
-  let question = getQuestion(questions)
-  showQuestion(formAnswers, question, n)
-  return question
+ function askQuestion(n, formAnswers, question){
+  showQuestion(formAnswers, question[n-1], n)
+  return question[n-1]
 }
 
 
@@ -151,10 +160,9 @@ import questions from './questions.js';
  */
  function checkAnswer(question, userAnswer){
   let correctAnswer = ""
-  for(let i = 0; i < Object.keys(question["answers"]).length; i++){
-    let answer = question["answers"][i+1]
-    if(answer[answer.length - 1] == " ") correctAnswer = answer
-  }
+  question["answers"].forEach((q) => {
+    if(q[q.length - 1] == " ") correctAnswer = q
+  })
 
   return (userAnswer == correctAnswer)
 }
