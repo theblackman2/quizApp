@@ -85,6 +85,8 @@
 } 
 
 .form-answer label{
+  word-break: keep-all;
+  word-wrap: break-word;
   width: 87%;
 }
 
