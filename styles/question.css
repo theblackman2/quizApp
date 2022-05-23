@@ -29,11 +29,10 @@
 
 .time-under span{
   display: block;
-  width: 100%;
   height: 100%;
   background: #028A3D;
   border-radius: 5px;
-  transition: backgound 1s;
+  animation: fluid 60s linear;
 }
 
 .form-answer{
@@ -125,4 +124,24 @@
 
 button a{
   color: #fff;
+}
+
+@keyframes fluid {
+  0%{
+    width: 100%;
+  }
+  25%{
+    width: 75%;
+  }
+  50%{
+    width: 50%;
+  }
+  75%{
+    width: 25%;
+    background: #EC880C;
+  }
+  100%{
+    width: 0%;
+    background: #FF3838;
+  }
 }

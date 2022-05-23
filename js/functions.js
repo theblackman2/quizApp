@@ -111,7 +111,6 @@ function shurffle(arr){
 }
 
 
-
 /**
  * 
  * @param {number} n The number of the question
@@ -134,19 +133,13 @@ function shurffle(arr){
   const showTime = document.querySelector(".show-time")
   let t = 60
   showTime.textContent = t
-  timer.style.width = "100%"
-  let percent = 100
   timer.style.background = "#028A3D"
   let animation = setInterval(() => {
-    percent = (t*100) / 60
     t--
     showTime.textContent = t
-    if(t < 30) timer.style.background = "#EC880C"
-    if(t < 15) timer.style.background = "red"
     if(t == 0){
       clearInterval(animation)
     }
-    timer.style.width = percent + "%"
   }, 1000)
 
   return animation
@@ -176,4 +169,14 @@ function checkEmail(email){
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(String(email).toLowerCase())
 }
 
-export { getUserInfos, validateForm, getQuestion, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail }
+function fluidAnimation(){
+  const timeShow = document.createElement("span")
+  timeShow.classList.add("time-spend")
+  timeShow.setAttribute("id", "time-spend")
+  
+  const parentTimeShow = document.querySelector(".time-under")
+  parentTimeShow.removeChild(parentTimeShow.firstElementChild)
+  parentTimeShow.appendChild(timeShow)
+}
+
+export { getUserInfos, validateForm, getQuestion, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail, fluidAnimation }

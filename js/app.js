@@ -1,5 +1,5 @@
 // Import all functions 
-import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, getQuestion} from "./functions.js"
+import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, getQuestion, fluidAnimation } from "./functions.js"
 
 // Import all constants 
 import { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, allAnswers, timer, next, quit } from "./constants.js";
@@ -32,8 +32,10 @@ userInfosForm.addEventListener("submit", function(e){
       next.click()
       next.setAttribute("disabled", "true")
     }, 60000)
+    fluidAnimation()
     next.addEventListener("click", function(e){
       if(this.getAttribute("disabled") == "false"){
+        fluidAnimation()
         clearTimeout(timeOut)
         clearInterval(animation)
         timeOut = setTimeout(() => {
