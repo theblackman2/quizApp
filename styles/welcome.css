@@ -119,3 +119,17 @@ input:focus{
     margin-top: 15px;
   }
 }
+
+@media (orientation: landscape){
+
+  .container{
+    height: auto;
+    min-height: 100vh;
+    padding: 10px 0;
+  }
+  
+  .container > div {
+    height: auto;
+    max-height: unset;
+  }
+}
