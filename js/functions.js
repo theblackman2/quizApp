@@ -176,6 +176,10 @@ function fluidAnimation(){
   parentTimeShow.appendChild(timeShow)
 }
 
+/**
+ * 
+ * @returns SetTimeout of 60 seconds
+ */
 function SetTimeOut(){
   return setTimeout(() => {
     next.setAttribute("disabled", "false")
