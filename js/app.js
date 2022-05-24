@@ -1,8 +1,8 @@
 // Import all functions 
-import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, getQuestion, fluidAnimation } from "./functions.js"
+import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, shurffleQuestions, fluidAnimation, SetTimeOut, hideAndShow } from "./functions.js"
 
 // Import all constants 
-import { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, allAnswers, timer, next, quit } from "./constants.js";
+import { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, timer, next, quit } from "./constants.js";
 
 
 // able the next btn after answer choosed
@@ -15,34 +15,25 @@ for(let answer of questionsForm.elements.answer){
 }
 
 userInfosForm.addEventListener("submit", function(e){
-  let q = getQuestion(questions)
+  let shuAnswers = shurffleQuestions(questions)
   let valid = validateForm(this)
   if(valid){
     const user = getUserInfos(this)
     this.reset()
-    welcomeArea.classList.add("hide")
-    questionArea.classList.remove("hide")
+    hideAndShow(welcomeArea, questionArea)
 
     let nbrQuestons = 1
     let score = 0
-    let question = askQuestion(nbrQuestons, formAnswers, q)
+    let question = askQuestion(nbrQuestons, formAnswers, shuAnswers)
     let animation = TimeAnimation(timer)
-    let timeOut = setTimeout(() => {
-      next.setAttribute("disabled", "false")
-      next.click()
-      next.setAttribute("disabled", "true")
-    }, 60000)
+    let timeOut = SetTimeOut()
     fluidAnimation()
     next.addEventListener("click", function(e){
       if(this.getAttribute("disabled") == "false"){
         fluidAnimation()
         clearTimeout(timeOut)
         clearInterval(animation)
-        timeOut = setTimeout(() => {
-          next.setAttribute("disabled", "false")
-          next.click()
-          next.setAttribute("disabled", "true")
-        }, 60000)
+        timeOut = SetTimeOut()
       }
       let userChoice = document.querySelector(".form-answer input:checked")
       if(userChoice){
@@ -53,12 +44,11 @@ userInfosForm.addEventListener("submit", function(e){
         if(this.getAttribute("disabled") == "false"){
           if(nbrQuestons < 15){
             nbrQuestons += 1
-            question = askQuestion(nbrQuestons, formAnswers, q)
+            question = askQuestion(nbrQuestons, formAnswers, shuAnswers)
             animation = TimeAnimation(timer)
           }else{
-            questionArea.classList.add("hide")
-            finishedArea.classList.remove("hide")
-            showScore(user, score, questionArea, finishedArea)
+            hideAndShow(questionArea, finishedArea)
+            showScore(user, score)
           }
         }
         this.setAttribute("disabled", true)
@@ -66,10 +56,11 @@ userInfosForm.addEventListener("submit", function(e){
         if(this.getAttribute("disabled") == "false"){
           if(nbrQuestons < 15){
             nbrQuestons += 1
-            question = askQuestion(nbrQuestons, formAnswers, q)
+            question = askQuestion(nbrQuestons, formAnswers, shuAnswers)
             animation = TimeAnimation(timer)
           }else{
-            showScore(user, score, questionArea, finishedArea)
+            hideAndShow(questionArea, finishedArea)
+            showScore(user, score)
           }
         }
       }
@@ -77,7 +68,8 @@ userInfosForm.addEventListener("submit", function(e){
     quit.addEventListener("click", function(e){
       clearInterval(animation)
       clearTimeout(timeOut)
-      showScore(user, score, questionArea, finishedArea)
+      hideAndShow(questionArea, finishedArea)
+      showScore(user, score)
     })
   }
   e.preventDefault()
