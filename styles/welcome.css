@@ -59,6 +59,7 @@ input:focus{
   line-height: 32px;
   margin-bottom: 35px;
   text-align: center;
+  font-weight: 400;
 }
 
 .form{

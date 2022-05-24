@@ -55,12 +55,8 @@ function shurffle(arr){
  * 
  * @param {Array} user The current user
  * @param {Int} score The score of the user
- * @param {DOMElement} questionArea The current area where are displayed questions
- * @param {DOMElement} finishedArea The final area where will be displayed the score
  */
- function showScore(user, score, questionArea, finishedArea){
-  questionArea.classList.add("hide")
-  finishedArea.classList.remove("hide")
+ function showScore(user, score){
   const name = document.querySelector(".big-name")
   name.textContent = user[0]
   const email = document.querySelector(".user-email")
@@ -83,10 +79,10 @@ function shurffle(arr){
 
 /**
  * 
- * @param {Array} questions All the questions where we choose one question
- * @returns The question choosed in questions
+ * @param {Array} questions The normal array of questions
+ * @returns Array of shurffled questions
  */
- function getQuestion(questions){
+ function shurffleQuestions(questions){
    return shurffle(questions)
 }
 
@@ -169,6 +165,7 @@ function checkEmail(email){
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(String(email).toLowerCase())
 }
 
+
 function fluidAnimation(){
   const timeShow = document.createElement("span")
   timeShow.classList.add("time-spend")
@@ -179,4 +176,23 @@ function fluidAnimation(){
   parentTimeShow.appendChild(timeShow)
 }
 
-export { getUserInfos, validateForm, getQuestion, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail, fluidAnimation }
+function SetTimeOut(){
+  setTimeout(() => {
+    next.setAttribute("disabled", "false")
+    next.click()
+    next.setAttribute("disabled", "true")
+  }, 60000)
+}
+
+
+/**
+ * 
+ * @param {DOMElement} toHide The section to hide
+ * @param {DOMElement} toShow The section to show
+ */
+function hideAndShow(toHide, toShow){
+  toHide.classList.add("hide")
+  toShow.classList.remove("hide")
+}
+
+export { getUserInfos, validateForm, shurffleQuestions, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail, fluidAnimation, SetTimeOut, hideAndShow }
