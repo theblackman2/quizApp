@@ -177,7 +177,7 @@ function fluidAnimation(){
 }
 
 function SetTimeOut(){
-  setTimeout(() => {
+  return setTimeout(() => {
     next.setAttribute("disabled", "false")
     next.click()
     next.setAttribute("disabled", "true")
