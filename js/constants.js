@@ -148,7 +148,7 @@ const questions = [
     answers : [
       "Client",
       "Server",
-      "Cieent et Server ",
+      "Cient et Server ",
       "Aucune"
     ]
   },
