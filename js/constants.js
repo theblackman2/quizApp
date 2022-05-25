@@ -217,7 +217,9 @@ const allAnswers = document.querySelectorAll(".form-answer")
 const timer = document.querySelector("#time-spend")
 const next = document.querySelector("#next")
 const quit = document.querySelector("#quit")
+const showTime = document.querySelector(".show-time")
+const parentTimeShow = document.querySelector(".time-under")
 
 export default questions
 
-export { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, allAnswers, timer, next, quit }
+export { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, allAnswers, timer, next, quit, showTime, parentTimeShow }
