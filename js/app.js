@@ -2,10 +2,10 @@
 import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, shurffleQuestions, fluidAnimation, SetTimeOut, hideAndShow } from "./functions.js"
 
 // Import all constants 
-import { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, timer, next, quit } from "./constants.js";
+import { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, timer, next, quit, showTime, parentTimeShow } from "./constants.js";
 
 
-// able the next btn after answer choosed
+// able the next btn after one answer choosed
 for(let answer of questionsForm.elements.answer){
   answer.addEventListener("change", function(e){
     let nextBtn = document.querySelector("#next")
@@ -15,7 +15,7 @@ for(let answer of questionsForm.elements.answer){
 }
 
 userInfosForm.addEventListener("submit", function(e){
-  let shuAnswers = shurffleQuestions(questions)
+  let shurffeQuestions = shurffleQuestions(questions)
   let valid = validateForm(this)
   if(valid){
     const user = getUserInfos(this)
@@ -24,13 +24,13 @@ userInfosForm.addEventListener("submit", function(e){
 
     let nbrQuestons = 1
     let score = 0
-    let question = askQuestion(nbrQuestons, formAnswers, shuAnswers)
-    let animation = TimeAnimation(timer)
+    let question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
+    let animation = TimeAnimation(showTime)
     let timeOut = SetTimeOut()
-    fluidAnimation()
+    fluidAnimation(parentTimeShow)
     next.addEventListener("click", function(e){
       if(this.getAttribute("disabled") == "false"){
-        fluidAnimation()
+        fluidAnimation(parentTimeShow)
         clearTimeout(timeOut)
         clearInterval(animation)
         timeOut = SetTimeOut()
@@ -44,8 +44,8 @@ userInfosForm.addEventListener("submit", function(e){
         if(this.getAttribute("disabled") == "false"){
           if(nbrQuestons < 15){
             nbrQuestons += 1
-            question = askQuestion(nbrQuestons, formAnswers, shuAnswers)
-            animation = TimeAnimation(timer)
+            question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
+            animation = TimeAnimation(showTime)
           }else{
             hideAndShow(questionArea, finishedArea)
             showScore(user, score)
@@ -56,8 +56,8 @@ userInfosForm.addEventListener("submit", function(e){
         if(this.getAttribute("disabled") == "false"){
           if(nbrQuestons < 15){
             nbrQuestons += 1
-            question = askQuestion(nbrQuestons, formAnswers, shuAnswers)
-            animation = TimeAnimation(timer)
+            question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
+            animation = TimeAnimation(showTime)
           }else{
             hideAndShow(questionArea, finishedArea)
             showScore(user, score)

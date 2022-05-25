@@ -2,14 +2,10 @@
 /**
  * 
  * @param {DOMElement} formInfos The form where we get user infos
- * @returns The user infos from the form
+ * @returns [Username, Email]
  */
  function getUserInfos(formInfos){
-  const userName = formInfos.elements.name.value
-  const userEmail = formInfos.elements.email.value
-  const unserInfos = [userName, userEmail]
-
-  return unserInfos
+  return [formInfos.elements.name.value, formInfos.elements.email.value]
 }
 
 /**
@@ -43,7 +39,7 @@
 /**
  * 
  * @param {Array} arr The array to shurffle
- * @returns The shurffled array
+ * @returns Shurffled array
  */
 function shurffle(arr){
   return arr.sort(()=>Math.random()-0.5)
@@ -73,7 +69,6 @@ function shurffle(arr){
     succesIcon.classList.remove("hide")
     wrong.classList.add("hide")
   }
-  
 }
 
 
@@ -109,7 +104,7 @@ function shurffle(arr){
 
 /**
  * 
- * @param {number} n The number of the question
+ * @param {Int} n The number of the question
  * @param {DOMElement} formAnswers The form where will be diqplayed the question
  * @param {Array} question The sorted array of questions
  * @returns The question asked
@@ -122,14 +117,12 @@ function shurffle(arr){
 
 /**
  * 
- * @param {DOMElement} timer The element to animate
+ * @param {DOMElement} showTime Place to show time
  * @returns {Event} SetInterval in this case
  */
- function TimeAnimation(timer){
-  const showTime = document.querySelector(".show-time")
+ function TimeAnimation(showTime){
   let t = 60
   showTime.textContent = t
-  timer.style.background = "#028A3D"
   let animation = setInterval(() => {
     t--
     showTime.textContent = t
@@ -137,7 +130,6 @@ function shurffle(arr){
       clearInterval(animation)
     }
   }, 1000)
-
   return animation
 }
 
@@ -165,13 +157,15 @@ function checkEmail(email){
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(String(email).toLowerCase())
 }
 
-
-function fluidAnimation(){
+/**
+ * 
+ * @param {DOMElement} parentTimeShow The div parent of span of time spend
+ */
+function fluidAnimation(parentTimeShow){
   const timeShow = document.createElement("span")
   timeShow.classList.add("time-spend")
   timeShow.setAttribute("id", "time-spend")
-  
-  const parentTimeShow = document.querySelector(".time-under")
+
   parentTimeShow.removeChild(parentTimeShow.firstElementChild)
   parentTimeShow.appendChild(timeShow)
 }
