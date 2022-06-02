@@ -12,6 +12,28 @@
   return user
 }
 
+
+function makeInvalid(element, message){
+  element.nextElementSibling.style.display = "block"
+  element.nextElementSibling.textContent = message
+  element.style.border = "1px solid #f00"
+}
+
+function makeValid(element){
+  element.style.border = "1px solid #555555"
+  element.nextElementSibling.style.display = "none"
+}
+
+/**
+ * 
+ * @param {String} email The str email to validate
+ * @returns True or false if valid email or not
+ */
+function checkEmail(email){
+  const validRegex = /[a-zA-Z0-9]+@[a-zA-Z0-9]+[.][a-zA-Z]+/
+  return validRegex.test(email)
+}
+
 /**
  * 
  * @param {DOMElement} form The form to validate
@@ -21,21 +43,24 @@
   let validate = true
   Array.from(form.elements).forEach(element => {
     if(!element.value){
-      element.nextElementSibling.style.display = "block"
-      element.style.border = "1px solid #f00"
+      makeInvalid(element, "N’oubliez pas de renseigner votre nom avant de commencer le Quiz.")
       validate = false
     }else{
       if(element.type != "submit"){
-        element.style.border = "1px solid #555555"
-        element.nextElementSibling.style.display = "none"
+        makeValid(element)
       }
     }
   })
-  let email = form.elements["email"]
-  if(!checkEmail(email.value)){
+  const name = form.elements.name
+  if(name.value.length && name.value.length < 2){
+    makeInvalid(name, "Votre nom doit contenir au moins 2 caractères")
     validate = false
-    email.nextElementSibling.style.display = "block"
-    email.style.border = "1px solid #f00"
+  }
+
+  const email = form.elements.email
+  if(email.value.length && !checkEmail(email.value)){
+    makeInvalid(email, "Veillez renseigner une adresse email valide")
+    validate = false
   }
   return validate
 }
@@ -150,15 +175,6 @@ function shurffle(arr){
   })
 
   return (userAnswer == correctAnswer)
-}
-
-/**
- * 
- * @param {String} email The str email to validate
- * @returns True or false if valid email or not
- */
-function checkEmail(email){
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(String(email).toLowerCase())
 }
 
 /**
