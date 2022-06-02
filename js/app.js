@@ -1,8 +1,16 @@
 // Import all functions 
-import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, shurffleQuestions, fluidAnimation, SetTimeOut, hideAndShow } from "./functions.js"
+import { getUserInfos, validateForm, showScore, askQuestion, TimeAnimation, checkAnswer, shurffleQuestions, fluidAnimation, SetTimeOut, hideContainer, showContainer } from "./functions.js"
 
 // Import all constants 
 import { questions, userInfosForm, welcomeArea, questionArea, finishedArea, questionsForm, formAnswers, timer, next, quit, showTime, parentTimeShow } from "./constants.js";
+
+
+let nbrQuestons = 1
+let score = 0
+let animation
+let timeOut
+let question
+let user = null
 
 
 // able the next btn after one answer choosed
@@ -18,15 +26,13 @@ userInfosForm.addEventListener("submit", function(e){
   let shurffeQuestions = shurffleQuestions(questions)
   let valid = validateForm(this)
   if(valid){
-    const user = getUserInfos(this)
+    user = getUserInfos(this)
     this.reset()
-    hideAndShow(welcomeArea, questionArea)
-
-    let nbrQuestons = 1
-    let score = 0
-    let question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
-    let animation = TimeAnimation(showTime)
-    let timeOut = SetTimeOut()
+    hideContainer(welcomeArea)
+    showContainer(questionArea)
+    question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
+    animation = TimeAnimation(showTime)
+    timeOut = SetTimeOut()
     fluidAnimation(parentTimeShow)
     next.addEventListener("click", function(e){
       if(this.getAttribute("disabled") == "false"){
@@ -47,7 +53,8 @@ userInfosForm.addEventListener("submit", function(e){
             question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
             animation = TimeAnimation(showTime)
           }else{
-            hideAndShow(questionArea, finishedArea)
+            hideContainer(questionArea)
+            showContainer(finishedArea)
             showScore(user, score)
           }
         }
@@ -59,18 +66,21 @@ userInfosForm.addEventListener("submit", function(e){
             question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
             animation = TimeAnimation(showTime)
           }else{
-            hideAndShow(questionArea, finishedArea)
+            hideContainer(questionArea)
+            showContainer(finishedArea)
             showScore(user, score)
           }
         }
       }
     })
-    quit.addEventListener("click", function(e){
-      clearInterval(animation)
-      clearTimeout(timeOut)
-      hideAndShow(questionArea, finishedArea)
-      showScore(user, score)
-    })
   }
   e.preventDefault()
+})
+
+quit.addEventListener("click", function(e){
+  clearInterval(animation)
+  clearTimeout(timeOut)
+  hideContainer(questionArea)
+  showContainer(finishedArea)
+  showScore(user, score)
 })
