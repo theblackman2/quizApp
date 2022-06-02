@@ -202,4 +202,9 @@ function showContainer(container){
   container.classList.remove("hide")
 }
 
-export { getUserInfos, validateForm, shurffleQuestions, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail, fluidAnimation, SetTimeOut, hideContainer, showContainer }
+function setDisabled(btn){
+  btn.setAttribute("disabled", true)
+  btn.style.background = "rgba(2, 138, 61, .42)"
+}
+
+export { getUserInfos, validateForm, shurffleQuestions, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail, fluidAnimation, SetTimeOut, hideContainer, showContainer, setDisabled }
