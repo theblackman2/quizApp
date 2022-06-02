@@ -32,7 +32,7 @@ input:focus{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to right, #89E5C1, #97DFE2);
+  background: linear-gradient(90deg, #85F6B8 0%, rgba(142, 217, 235, 0.85) 99.84%);
 }
 
 .welcome-section,
@@ -94,7 +94,7 @@ input:focus{
 }
 
 .error{
-  font-size: 9px;
+  font-size: 10px;
   margin-top: 4px;
   color: #f00;
   display: none;
