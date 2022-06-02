@@ -59,6 +59,9 @@ next.addEventListener("click", function(e){
       nbrQuestons += 1
       question = askQuestion(nbrQuestons, formAnswers, shurffeQuestions)
       animation = TimeAnimation(showTime)
+      if(nbrQuestons == 15){
+        this.textContent = "Terminer"
+      }
     }else{
       hideContainer(questionArea)
       showContainer(finishedArea)

@@ -45,15 +45,6 @@ const questions = [
     ]
   },
   {
-    question: "Lequel de ces framework est de javascript?",
-    answers : [
-      "laravel",
-      "symfony",
-      "nod.js",
-      "vue.js "
-    ]
-  },
-  {
     question: "Quel est le moyen correct d'utiliser \"If\" en javascript?",
     answers : [
       "(if ...){...}",
@@ -72,30 +63,12 @@ const questions = [
     ]
   },
   {
-    question: "Comment trouver le max de x et y?",
+    question: "Comment trouver le max de x et y en Javascript?",
     answers : [
       "ceil(x, y)",
       "max(x, y)",
       "Math.max(x, y) ",
       "top(x, y)"
-    ]
-  },
-  {
-    question: "Javascript ne peut pas changer la balise HTML?",
-    answers : [
-      "Si ",
-      "Non",
-      "Ce n'est pas correct",
-      "Pour certaines balises seulement"
-    ]
-  },
-  {
-    question: "On peut définir n'importe quel style d'une balise HTML avec Javascript",
-    answers : [
-      "Oui",
-      "Non",
-      "Oui, mais ce n'est pas recommandé ",
-      "Oui, mais pas pour toutes les balises"
     ]
   },
   {
@@ -105,24 +78,6 @@ const questions = [
       "var ob = Object()",
       "var ob = {} ",
       "var ob = []"
-    ]
-  },
-  {
-    question: "Comment pouvons-nous obtenir les cookies avec Javascript?",
-    answers : [
-      "window.cookies",
-      "location.cookies",
-      "document.cookie ",
-      "document.cookies"
-    ]
-  },
-  {
-    question: "Comment écrire quelque chose dans une page Web en Javascript?",
-    answers : [
-      "window.write(...)",
-      "document.write(...) ",
-      "window.page.write(...)",
-      "document.page.write(...)"
     ]
   },
   {
@@ -144,30 +99,12 @@ const questions = [
     ]
   },
   {
-    question: "Javascript est utilisé pour développer la partie _____ d'une application web",
-    answers : [
-      "Client",
-      "Server",
-      "Cient et Server ",
-      "Aucune"
-    ]
-  },
-  {
-    question: "Comment obtenir Le minimum entre x et y?",
+    question: "Comment obtenir Le minimum entre x et y avec Javascript?",
     answers : [
       "min(x, y)",
       "Math.min(x, y) ",
       "Math.min(xy)",
       "min(xy)"
-    ]
-  },
-  {
-    question: "Lequel de ces mots clés javascript récupère toutes les valeurs sauf celle spécifiée?",
-    answers : [
-      "catch",
-      "label",
-      "try",
-      "default "
     ]
   },
   {
@@ -189,21 +126,12 @@ const questions = [
     ]
   },
   {
-    question: "Lequel de ce type n'est pas géré par javascript?",
+    question: "Lequel de ce type de données n'est pas géré par javascript?",
     answers : [
       "Undifined",
       "Null",
       "Boolean",
       "Symbol "
-    ]
-  },
-  {
-    question: "Il y a une différence entre var et let?",
-    answers : [
-      "Oui ",
-      "Non",
-      "Oui, mais les deux font la même chose",
-      "Ça dépend des cas d'utilisation"
     ]
   }
 ]
