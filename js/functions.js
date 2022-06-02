@@ -1,11 +1,15 @@
 
 /**
  * 
- * @param {DOMElement} formInfos The form where we get user infos
- * @returns [Username, Email]
+ * @param {DOMElement} 
+ * @returns User{name, email}
  */
  function getUserInfos(formInfos){
-  return [formInfos.elements.name.value, formInfos.elements.email.value]
+   const user = {
+     name : formInfos.elements.name.value,
+     email: formInfos.elements.email.value
+   }
+  return user
 }
 
 /**
@@ -54,9 +58,9 @@ function shurffle(arr){
  */
  function showScore(user, score){
   const name = document.querySelector(".big-name")
-  name.textContent = user[0]
+  name.textContent = user.name
   const email = document.querySelector(".user-email")
-  email.textContent = user[1]
+  email.textContent = user.email
   const scoreArea = document.querySelector(".user-score")
   scoreArea.textContent = score
 
@@ -182,15 +186,25 @@ function SetTimeOut(){
   }, 60000)
 }
 
+/**
+ * 
+ * @param {DOMElement} container 
+ */
+function hideContainer(container){
+  container.classList.add("hide")
+}
 
 /**
  * 
- * @param {DOMElement} toHide The section to hide
- * @param {DOMElement} toShow The section to show
+ * @param {DOMElement} container 
  */
-function hideAndShow(toHide, toShow){
-  toHide.classList.add("hide")
-  toShow.classList.remove("hide")
+function showContainer(container){
+  container.classList.remove("hide")
 }
 
-export { getUserInfos, validateForm, shurffleQuestions, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail, fluidAnimation, SetTimeOut, hideAndShow }
+function setDisabled(btn){
+  btn.setAttribute("disabled", true)
+  btn.style.background = "rgba(2, 138, 61, .42)"
+}
+
+export { getUserInfos, validateForm, shurffleQuestions, showScore, askQuestion, TimeAnimation, checkAnswer, checkEmail, fluidAnimation, SetTimeOut, hideContainer, showContainer, setDisabled }
