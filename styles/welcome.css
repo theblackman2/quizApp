@@ -40,8 +40,8 @@ input:focus{
 .finished-section{
   width: 400px;
   max-width: 80%;
-  height: 80%;
-  min-height: 90%;
+  height: 600px;
+  max-height: 600px;
   padding: 40px 10px;
   display: flex;
   align-items: center;
@@ -112,7 +112,7 @@ input:focus{
     max-width: unset;
     width: 90%;
     height: auto;
-    min-height: 90vh;
+    min-height: 600px;
   }
 }
 
