@@ -13,13 +13,13 @@
 }
 
 
-function makeInvalid(element, message){
+function makeInputInvalid(element, message){
   element.nextElementSibling.style.display = "block"
   element.nextElementSibling.textContent = message
   element.style.border = "1px solid #f00"
 }
 
-function makeValid(element){
+function makeInputValid(element){
   element.style.border = "1px solid #555555"
   element.nextElementSibling.style.display = "none"
 }
@@ -43,23 +43,23 @@ function checkEmail(email){
   let validate = true
   Array.from(form.elements).forEach(element => {
     if(!element.value){
-      makeInvalid(element, "N’oubliez pas de renseigner votre nom avant de commencer le Quiz.")
+      makeInputInvalid(element, "N’oubliez pas de renseigner votre nom avant de commencer le Quiz.")
       validate = false
     }else{
       if(element.type != "submit"){
-        makeValid(element)
+        makeInputValid(element)
       }
     }
   })
   const name = form.elements.name
   if(name.value.length && name.value.length < 2){
-    makeInvalid(name, "Votre nom doit contenir au moins 2 caractères")
+    makeInputInvalid(name, "Votre nom doit contenir au moins 2 caractères")
     validate = false
   }
 
   const email = form.elements.email
   if(email.value.length && !checkEmail(email.value)){
-    makeInvalid(email, "Veillez renseigner une adresse email valide")
+    makeInputInvalid(email, "Veillez renseigner une adresse email valide")
     validate = false
   }
   return validate

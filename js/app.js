@@ -12,11 +12,9 @@ let question
 let user = null
 let shurffeQuestions
 
-
-// able the next btn after one answer choosed
 for(let answer of questionsForm.elements.answer){
   answer.addEventListener("change", function(e){
-    let nextBtn = document.querySelector("#next")
+    const nextBtn = document.querySelector("#next")
     nextBtn.setAttribute("disabled", false)
     next.style.background = "rgba(2, 138, 61, 1)"
 })
